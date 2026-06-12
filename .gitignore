@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.next/
+.astro/
+*.tsbuildinfo
+.env
+.DS_Store
+*.log

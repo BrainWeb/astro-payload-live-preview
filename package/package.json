@@ -1,0 +1,86 @@
+{
+  "name": "astro-payload-live-preview",
+  "version": "0.1.0",
+  "description": "Astro component for Payload CMS server-side Live Preview — refreshes your SSR routes when documents are saved in the admin panel",
+  "homepage": "https://github.com/BrainWeb/astro-payload-live-preview",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BrainWeb/astro-payload-live-preview.git",
+    "directory": "package"
+  },
+  "bugs": {
+    "url": "https://github.com/BrainWeb/astro-payload-live-preview/issues"
+  },
+  "license": "MIT",
+  "author": "BrainWeb <ric@brainweb.co.uk> (https://brainweb.co.uk)",
+  "keywords": [
+    "astro",
+    "astro-component",
+    "withastro",
+    "payload",
+    "payloadcms",
+    "live-preview",
+    "cms",
+    "preview"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./client": {
+      "import": "./src/subscribeToRefresh.ts",
+      "types": "./src/subscribeToRefresh.ts",
+      "default": "./src/subscribeToRefresh.ts"
+    }
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "dist",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "pnpm copyfiles && pnpm build:types && pnpm build:swc",
+    "build:swc": "swc ./src -d ./dist --config-file .swcrc --strip-leading-paths --ignore \"**/*.d.ts\"",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist",
+    "clean": "rimraf -g {dist,*.tsbuildinfo}",
+    "copyfiles": "copyfiles -u 1 \"src/**/*.astro\" dist/",
+    "prepublishOnly": "pnpm clean && pnpm build"
+  },
+  "dependencies": {
+    "@payloadcms/live-preview": "^3.0.0"
+  },
+  "devDependencies": {
+    "@swc/cli": "0.7.9",
+    "@swc/core": "1.15.3",
+    "copyfiles": "2.4.1",
+    "rimraf": "6.0.1",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "astro": "^4.0.0 || ^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/index.js",
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./client": {
+        "import": "./dist/subscribeToRefresh.js",
+        "types": "./dist/subscribeToRefresh.d.ts",
+        "default": "./dist/subscribeToRefresh.js"
+      }
+    },
+    "main": "./dist/index.js",
+    "registry": "https://registry.npmjs.org/",
+    "types": "./dist/index.d.ts"
+  }
+}

@@ -1,0 +1,39 @@
+---
+import { RefreshRouteOnSave } from 'astro-payload-live-preview'
+import { getPayload } from 'payload'
+import { config } from 'payload-app'
+import Layout from '../../layouts/Layout.astro'
+
+const payloadServerURL = process.env.PAYLOAD_SERVER_URL || 'http://localhost:3000'
+const previewSecret = process.env.PREVIEW_SECRET || 'PREVIEW_SECRET'
+
+// Draft documents are only served when the Payload admin panel opens this page
+// with the shared preview secret, e.g. via `admin.livePreview.url`
+const isDraftMode = Astro.url.searchParams.get('preview') === previewSecret
+
+const payload = await getPayload({ config })
+
+const post = await payload
+  .findByID({ collection: 'posts', id: Astro.params.id!, draft: isDraftMode })
+  .catch(() => null)
+
+if (!post) {
+  return new Response(null, { status: 404 })
+}
+---
+
+<Layout>
+  <main>
+    <h1>{post.title}</h1>
+  </main>
+  {isDraftMode && <RefreshRouteOnSave serverURL={payloadServerURL} />}
+</Layout>
+
+<style>
+  main {
+    margin: 0 auto;
+    max-width: 60ch;
+    padding: 4rem 1rem;
+    font-family: sans-serif;
+  }
+</style>

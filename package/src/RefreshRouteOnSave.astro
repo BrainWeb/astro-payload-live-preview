@@ -1,0 +1,74 @@
+---
+/**
+ * Refreshes the current route each time the document is saved or autosaved
+ * in the Payload admin panel, for use with
+ * {@link https://payloadcms.com/docs/live-preview/server Payload Live Preview} (server-side mode).
+ *
+ * Requires the page to be server-rendered (`output: 'server'` or `prerender = false`).
+ * When the page also uses Astro's `<ClientRouter />`, the refresh swaps the DOM
+ * in place without a full reload; otherwise it falls back to a full page reload.
+ */
+export type Props = {
+  serverURL: string
+}
+
+const { serverURL } = Astro.props
+---
+
+<payload-live-preview-refresh data-server-url={serverURL} hidden></payload-live-preview-refresh>
+
+<script>
+  import type { RefreshSubscription } from 'astro-payload-live-preview/client'
+
+  import {
+    subscribeToRefresh,
+    unsubscribeFromRefresh,
+  } from 'astro-payload-live-preview/client'
+  import { navigate } from 'astro:transitions/client'
+
+  const isClientRouterEnabled = (): boolean =>
+    Boolean(document.querySelector('meta[name="astro-view-transitions-enabled"]'))
+
+  const refresh = async (): Promise<void> => {
+    if (isClientRouterEnabled()) {
+      const { scrollX, scrollY } = window
+
+      document.addEventListener('astro:after-swap', () => window.scrollTo(scrollX, scrollY), {
+        once: true,
+      })
+
+      await navigate(window.location.pathname + window.location.search, { history: 'replace' })
+    } else {
+      window.location.reload()
+    }
+  }
+
+  class PayloadLivePreviewRefresh extends HTMLElement {
+    subscription?: RefreshSubscription
+
+    connectedCallback() {
+      const serverURL = this.dataset.serverUrl
+
+      if (!serverURL) {
+        // eslint-disable-next-line no-console
+        console.error('You must provide a `serverURL` prop to `RefreshRouteOnSave`')
+        return
+      }
+
+      this.subscription = subscribeToRefresh({
+        refresh,
+        serverURL,
+      })
+    }
+
+    disconnectedCallback() {
+      if (this.subscription) {
+        unsubscribeFromRefresh(this.subscription)
+      }
+    }
+  }
+
+  if (!customElements.get('payload-live-preview-refresh')) {
+    customElements.define('payload-live-preview-refresh', PayloadLivePreviewRefresh)
+  }
+</script>
