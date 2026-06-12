@@ -4,11 +4,11 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "pnpm --filter astro-payload-live-preview build",
-    "clean": "pnpm --filter astro-payload-live-preview clean",
+    "build": "pnpm --filter @brainwebuk/astro-payload-live-preview build",
+    "clean": "pnpm --filter @brainwebuk/astro-payload-live-preview clean",
     "dev:payload": "pnpm --filter payload-app dev",
     "dev:website": "pnpm --filter astro-website dev",
-    "release": "pnpm build && pnpm --filter astro-payload-live-preview publish"
+    "release": "pnpm build && pnpm --filter @brainwebuk/astro-payload-live-preview publish"
   },
   "engines": {
     "node": ">=20.9.0"

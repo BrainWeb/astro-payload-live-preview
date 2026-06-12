@@ -45,7 +45,7 @@ All commands are run from the root of the project, from a terminal:
 
 ## 🔄 Payload Live Preview
 
-This site demonstrates [server-side Live Preview](https://payloadcms.com/docs/live-preview/server) with `astro-payload-live-preview`:
+This site demonstrates [server-side Live Preview](https://payloadcms.com/docs/live-preview/server) with `@brainwebuk/astro-payload-live-preview`:
 
 - `src/pages/posts/[id].astro` renders a post via the Payload Local API and includes `<RefreshRouteOnSave />` when opened with the preview secret (`?preview=...`), fetching draft content with `draft: true`.
 - `src/layouts/Layout.astro` includes Astro's `<ClientRouter />` so each save swaps the DOM in place instead of fully reloading the page.
@@ -53,7 +53,7 @@ This site demonstrates [server-side Live Preview](https://payloadcms.com/docs/li
 
 To try it: run both apps (`pnpm dev:payload` and `pnpm dev:website` from the repo root), then open a post in the Payload admin panel and select the **Live Preview** tab. Edits autosave and appear in the preview pane as you type.
 
-> Note: `astro-payload-live-preview` is consumed from the workspace (`package/`), so changes to the package source are picked up immediately.
+> Note: `@brainwebuk/astro-payload-live-preview` is consumed from the workspace (`package/`), so changes to the package source are picked up immediately.
 
 ## 👀 Want to learn more?
 

@@ -18,12 +18,12 @@ const { serverURL } = Astro.props
 <payload-live-preview-refresh data-server-url={serverURL} hidden></payload-live-preview-refresh>
 
 <script>
-  import type { RefreshSubscription } from 'astro-payload-live-preview/client'
+  import type { RefreshSubscription } from '@brainwebuk/astro-payload-live-preview/client'
 
   import {
     subscribeToRefresh,
     unsubscribeFromRefresh,
-  } from 'astro-payload-live-preview/client'
+  } from '@brainwebuk/astro-payload-live-preview/client'
   import { navigate } from 'astro:transitions/client'
 
   const isClientRouterEnabled = (): boolean =>

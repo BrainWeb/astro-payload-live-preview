@@ -1,5 +1,5 @@
 {
-  "name": "astro-payload-live-preview",
+  "name": "@brainwebuk/astro-payload-live-preview",
   "version": "0.1.0",
   "description": "Astro component for Payload CMS server-side Live Preview — refreshes your SSR routes when documents are saved in the admin panel",
   "homepage": "https://github.com/BrainWeb/astro-payload-live-preview",

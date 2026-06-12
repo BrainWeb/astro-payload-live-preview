@@ -1,4 +1,4 @@
-# astro-payload-live-preview
+# @brainwebuk/astro-payload-live-preview
 
 [Payload CMS](https://payloadcms.com) [Live Preview](https://payloadcms.com/docs/live-preview/overview) for [Astro](https://astro.build) — see your draft content update in the Payload admin panel as you type.
 
@@ -21,9 +21,9 @@ This package implements Payload's [server-side Live Preview](https://payloadcms.
 ## Installation
 
 ```bash
-npm install astro-payload-live-preview
+npm install @brainwebuk/astro-payload-live-preview
 # or
-pnpm add astro-payload-live-preview
+pnpm add @brainwebuk/astro-payload-live-preview
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ export default buildConfig({
 ```astro
 ---
 // src/pages/posts/[id].astro
-import { RefreshRouteOnSave } from 'astro-payload-live-preview'
+import { RefreshRouteOnSave } from '@brainwebuk/astro-payload-live-preview'
 
 const isPreview = Astro.url.searchParams.get('preview') === process.env.PREVIEW_SECRET
 
@@ -99,7 +99,7 @@ Astro component. Renders an invisible custom element that listens for Payload do
 
 ### `subscribeToRefresh({ serverURL, refresh })` / `unsubscribeFromRefresh(subscription)`
 
-Lower-level helpers (also available from `astro-payload-live-preview/client`) if you want to wire up your own client script with a custom refresh strategy.
+Lower-level helpers (also available from `@brainwebuk/astro-payload-live-preview/client`) if you want to wire up your own client script with a custom refresh strategy.
 
 ## Fetching draft content
 
