@@ -14,7 +14,7 @@ This package implements Payload's [server-side Live Preview](https://payloadcms.
 
 ## Requirements
 
-- **Astro 4 or 5 in SSR mode** — `output: 'server'` (or `export const prerender = false` on preview routes) with any adapter. Statically generated pages cannot reflect saved changes without a rebuild.
+- **Astro 4, 5, or 6 in SSR mode** — `output: 'server'` (or `export const prerender = false` on preview routes) with any adapter. Statically generated pages cannot reflect saved changes without a rebuild.
 - **Payload 3.x** running anywhere your Astro server can reach (separate app, same monorepo, etc.)
 - **Drafts + autosave** enabled on the collections you want to preview (autosave is what makes it feel live — set a low interval like `100`).
 
