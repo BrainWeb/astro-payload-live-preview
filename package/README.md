@@ -150,3 +150,7 @@ pnpm release  # build + publish to npm
 ## License
 
 [MIT](https://github.com/BrainWeb/astro-payload-live-preview/blob/main/LICENSE.md)
+
+---
+
+Built and maintained by [BrainWeb](https://www.brainweb.co.uk/), a web design studio in Norfolk, UK

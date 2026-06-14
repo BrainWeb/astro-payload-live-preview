@@ -150,3 +150,7 @@ pnpm release  # build + publish to npm
 ## License
 
 [MIT](./LICENSE.md)
+
+---
+
+Built and maintained by [BrainWeb](https://www.brainweb.co.uk/), a web design studio in Norfolk, UK
